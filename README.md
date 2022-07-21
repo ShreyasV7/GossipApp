@@ -1,1 +1,1 @@
-# Gossip1
+# gossip-app
