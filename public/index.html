@@ -1,0 +1,116 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- join screen -->
+        <div class="screen join-screen  active">
+            <div class="form">
+                <h2>Gossip.com</h2>
+                <div class="form-input">
+
+                    <label>Username</label>
+                    <input type="text" id="username">
+
+                </div>
+
+                <button id="join-user" type="button" class="btn-lg btn-warning btn form-input">Join
+
+                </button>
+
+                <!-- <div class="form-input">
+                    <button id="join-user">Join</button>
+                </div> -->
+            </div>
+
+        </div>
+
+
+
+
+        <!-- Screen Chat  -->
+        <div class="screen chat-screen ">
+
+            <div class="header">
+                <div class="logo">Chat Room</div>
+                <!-- <button    id="exit-chat">Exit</button> -->
+                <button padding:5px 10px cursor : pointer id="exit-chat" type="button"
+                    class="btn btn-danger btn-lg">Exit</button>
+
+            </div>
+
+
+
+            <div class="messages">
+
+                 <div class="message my-message">
+                    <div>
+                        <div class="name">You</div>
+                        <div class="text">Hi</div>
+                    </div>
+                </div>
+
+                <div class="update">xyz joined the chat</div>
+
+                Other's message 
+                 <div class="message other-message">
+                    <div>
+                        <div class="name">You</div>
+                        <div class="text">Hi</div>
+                    </div>
+                </div> 
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Chat message typing area -->
+            <div class="typebox">
+                <!-- <div class="form-outline"> -->
+               <input type="text" id="message-input">
+               
+                <button id="send-message" type="button" class="btn btn-primary btn form-input mb-2">Send
+                </button>
+
+
+            </div>
+            <!-- <button id="send-message" type="button" class="btn btn-primary btn form-input mb-2">Send
+            </button> -->
+            
+
+
+
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="code.js"></script>
+
+</body>
+
+</html>
