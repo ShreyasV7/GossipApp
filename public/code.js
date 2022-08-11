@@ -1,89 +1,81 @@
-(function() {
-    const app = document.querySelector(".app");
-    const socket = io();
+(function(){
 
-    let name;
-    app.querySelector(".join-screen #join-user").addEventListener("click", function()  {
-        let username = app.querySelector(".join-screen #username").value;
+	const socket = io();
+	const App = document.querySelector(".app");
+	let user_name;
 
-        if (username.length == 0){return; }
 
-        socket.emit("newuser", username);
-        name = username;
-        app.querySelector(".join-screen").classList.remove("active");
-        app.querySelector(".chat-screen").classList.add("active");
-    });
+	App.querySelector(".join-screen #join-user").addEventListener("click",function(){
+		let username = App.querySelector(".join-screen #username").value;
+		if(username.length == 0){return;}
+		socket.emit("newuser",username);
+		user_name = username;
+		App.querySelector(".join-screen").classList.remove("active");
+		App.querySelector(".chat-screen").classList.add("active");
+	});
 
-    app.querySelector(".chat-screen #send-message").addEventListener("click", function(){
-        let data = app.querySelector(".chat-screen #message-input").value;
+	App.querySelector(".chat-screen #send-message").addEventListener("click",function(){
+		let message = App.querySelector(".chat-screen #message-input").value;
+		if(message.length  == 0){return;}
+		renderMessage("my",{
+			username:user_name,
+			text:message
+		});
+		socket.emit("chat",{
+			username:user_name,
+			text:message
+		});
+		App.querySelector(".chat-screen #message-input").value = "";
+	});
 
-        if (data.length == 0){return;}
+	App.querySelector(".chat-screen #exit-chat").addEventListener("click",function(){
+		socket.emit("exituser",user_name);
+		window.location.href = window.location.href;
+	});
 
-        renderData("my", {
-            username: name,
-            text: data
-                                                             
-        });
+    	
+	socket.on("chat",function(message){
+		renderMessage("other",message);
+	});
+	socket.on("update",function(update){
+		renderMessage("update",update);
+	});
 
-        socket.emit("chat", {
-            username: name,
-            text: data
-        });
 
-        app.querySelector(".chat-screen #message-input").value = "";
-    });
 
-    app.querySelector(".chat-screen #exit-chat").addEventListener("click",function(){
-        socket.emit("exituser",name)  ;
-        window.location.href = window.location.href;
-    })
+	function renderMessage(type,message){
+		let mssgContainer = App.querySelector(".chat-screen .messages");
+        let elementMssg ; 
+		if(type == "my"){
+			elementMssg = document.createElement("div");
+			elementMssg.setAttribute("class","message my-message");
+			elementMssg.innerHTML = `
+				<div>
+					<div class="name">You</div>
+					<div class="text">${message.text}</div>
+				</div>
+			`;
+			mssgContainer.appendChild(elementMssg); 
 
-    socket.on("update",function(update){
-        renderMessage("update",update) ;
-    })
-
-    
-    socket.on("chat",function(message){
-        renderMessage("other",message) ;
-    })
-
-    function renderData(type, data) {
-        let dataContainer = app.querySelector(".chat-screen .messages");
-
-        if (type == "my") {
-            let el = document.createElement("div");
-            el.setAttribute("class", "messsage my-message");
-            el.innerHTML = `
-                <div>
-                    <div class="name">You</div>
-                    <div class="text">${data.text}</div>
-                </div>
-                `;
-            dataContainer.appendChild(el);
-        }
-        else if (type == "other") {
-
-            let el = document.createElement("div");     
-            el.setAttribute("class", "messsage other-message");
-            el.innerHTML = `
-                <div>
-                    <div class="name">${data.username}</div>
-                    <div class="text">${data.text}</div>
-                </div>
-                `; 
-            dataContainer.appendChild(el);
-        }
-        else if (type == "update") {
-            let el = document.createElement("div");
-            el.setAttribute("class", "update");
-            el.innerHTML = data
-            dataContainer.appendChild(el);
+		} else if(type == "update"){
+			elementMssg = document.createElement("div");
+			elementMssg.setAttribute("class","update");
+			elementMssg.innerText = message;
+			mssgContainer.appendChild(el);
+		}
+        else if(type == "other"){
+			elementMssg = document.createElement("div");
+			elementMssg.setAttribute("class","message other-message");
+			elementMssg.innerHTML = `
+				<div>
+					<div class="name">${message.username}</div>
+					<div class="text">${message.text}</div>
+				</div>
+			`;
+			mssgContainer.appendChild(elementMssg);
         }
 
-        // scrolls chat till end
-        dataContainer.scrollTop = dataContainer.scrollHeight - dataContainer.clientHeight;
-    }
+		mssgContainer.scrollTop = mssgContainer.scrollHeight - mssgContainer.clientHeight;
+	}
 
-
-
-})(); 
+})();
