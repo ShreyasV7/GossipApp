@@ -1,6 +1,6 @@
 
 ![App Screenshot](https://i.postimg.cc/y83cBQQk/Screenshot-2022-08-26-121313.png)
-![App Screenshot](https://postimg.cc/1nxxDvL0)
+![App Screenshot](https://i.postimg.cc/ydxV45jG/Screenshot-2022-08-26-121430.png)
 
 
 
