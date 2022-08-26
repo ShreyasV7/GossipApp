@@ -9,7 +9,7 @@ Gossip.com is a website where users can chat with each other.
 # Tech Stack Used
 ![Logo](https://p.kindpng.com/picc/s/254-2547396_javascript-html-css-logo-hd-png-download.png)
 ![Logo](https://miro.medium.com/max/812/1*9hwcv7fEVKEw5LyWFok-lA.jpeg)
-![Logo](https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/node-js-black-icon.png)
+![Logo](https://cdn.pixabay.com/photo/2015/04/23/17/41/node-js-736399_1280.png)
 
 
 
