@@ -1,4 +1,10 @@
 
+![App Screenshot](https://i.postimg.cc/y83cBQQk/Screenshot-2022-08-26-121313.png)
+![App Screenshot](https://postimg.cc/1nxxDvL0)
+
+
+
+
 # Gossip.com
 Gossip.com is a website where users can chat with each other.
 
